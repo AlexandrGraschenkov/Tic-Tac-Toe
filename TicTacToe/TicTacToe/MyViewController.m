@@ -99,6 +99,7 @@
                    @[@1, @1, @1, @1 ,@0],
                    @[@0, @0, @0, @1, @0]
                    ];
+    // TODO: Х больше походит на У.. может нам тут не хватает искажения на пространство?
 
     for (int i  = 0 ; i < 5 ; i++){
         
@@ -153,260 +154,100 @@
     return NO;
 }
 
+- (BOOL)isSameButtons:(NSArray *)butts {
+    NSString *prevVal = [[butts firstObject] colour];
+    for (MyButton *butt in butts) {
+        if (![prevVal isEqual:butt.colour])
+            return false;
+        prevVal = butt.colour;
+    }
+    return prevVal != nil;
+}
 
 -(BOOL)checkMoveWithLAstButtonNumber:(int )number{
     int x = number/10;
     int y = number%10;
     
-    
-    
-    //слева направо
-    
-    if (x>=2 && y >=2 &&
-            [self.arr[y-2][x-2] isEqual:@1 ] &&
-            [self.arr[y-1][x-1] isEqual:@1 ] &&
-            [self.arr[y][x] isEqual:@1 ]){
-            MyButton *first = self.buttons[(y-2)*5+x-2];
-            MyButton *second = self.buttons[(y-1)*5+x-1];
-            MyButton *third = self.buttons[y*5+x];
-    
-                if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-                    [first setBackgroundColor:[UIColor redColor]];
-                    [second setBackgroundColor:[UIColor redColor]];
-                    [third setBackgroundColor:[UIColor redColor]];
-                    return YES;
-                }
-    }
-    
-    if (x>=1 && y >=1 && x<=3 && y<=3 &&
-        [self.arr[y-1][x-1] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y+1][x+1] isEqual:@1 ]){
-        MyButton *first = self.buttons[(y-1)*5+x-1];
-        MyButton *second = self.buttons[y*5+x];
-        MyButton *third = self.buttons[(y+1)*5+x+1];
-        
-            if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-                [first setBackgroundColor:[UIColor redColor]];
-                [second setBackgroundColor:[UIColor redColor]];
-                [third setBackgroundColor:[UIColor redColor]];
-                return YES;
-            
-        }
-        
-    }
-    
-    if (x<=2 && y <=2 &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y+1][x+1] isEqual:@1 ] &&
-        [self.arr[y+2][x+2] isEqual:@1 ]){
-        MyButton *first = self.buttons[y*5+x];
-        MyButton *second = self.buttons[(y+1)*5+x+1];
-        MyButton *third = self.buttons[(y+2)*5+x+2];
-            if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-                [first setBackgroundColor:[UIColor redColor]];
-                [second setBackgroundColor:[UIColor redColor]];
-                [third setBackgroundColor:[UIColor redColor]];
-                return YES;
-            }
-        
-        
-    }
-    
-    //справа налево
-    
-    if (x<=2 && y >=2 &&
-        [self.arr[y-2][x+2] isEqual:@1 ] &&
-        [self.arr[y-1][x+1] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ]){
-        MyButton *first = self.buttons[(y-2)*5+x+2];
-        MyButton *second = self.buttons[(y-1)*5+x+1];
-        MyButton *third = self.buttons[y*5+x];
-        
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-        }
-    }
-    
-    if (x>=1 && y >=1 && x<=3 && y<=3 &&
-        [self.arr[y-1][x+1] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y+1][x-1] isEqual:@1 ]){
-        MyButton *first = self.buttons[(y-1)*5+x+1];
-        MyButton *second = self.buttons[y*5+x];
-        MyButton *third = self.buttons[(y+1)*5+x-1];
-        
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-            
-        }
-        
-    }
-    
-    if (x>=2 && y <=2 &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y+1][x-1] isEqual:@1 ] &&
-        [self.arr[y+2][x-2] isEqual:@1 ]){
-        MyButton *first = self.buttons[y*5+x];
-        MyButton *second = self.buttons[(y+1)*5+x-1];
-        MyButton *third = self.buttons[(y+2)*5+x-2];
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-        }
-        
-        
-    }
-    
-    //горизонталь
-    if (y >=2 &&
-        [self.arr[y-2][x] isEqual:@1 ] &&
-        [self.arr[y-1][x] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ]){
-        MyButton *first = self.buttons[(y-2)*5+x];
-        MyButton *second = self.buttons[(y-1)*5+x];
-        MyButton *third = self.buttons[y*5+x];
-        
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-        }
-    }
-    
-    if (y >=1 && y<=3 &&
-        [self.arr[y-1][x] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y+1][x] isEqual:@1 ]){
-        MyButton *first = self.buttons[(y-1)*5+x];
-        MyButton *second = self.buttons[y*5+x];
-        MyButton *third = self.buttons[(y+1)*5+x];
-        
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-            
-        }
-        
-    }
-    
-    if (y <=2 &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y+1][x] isEqual:@1 ] &&
-        [self.arr[y+2][x] isEqual:@1 ]){
-        MyButton *first = self.buttons[y*5+x];
-        MyButton *second = self.buttons[(y+1)*5+x];
-        MyButton *third = self.buttons[(y+2)*5+x];
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-        }
-        
-        
-    }
-    
-    //вертикаль
-    
-    if (x>=2&&
-        [self.arr[y][x-2] isEqual:@1 ] &&
-        [self.arr[y][x-1] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ]){
-        MyButton *first = self.buttons[y*5+x-2];
-        MyButton *second = self.buttons[y*5+x-1];
-        MyButton *third = self.buttons[y*5+x];
-        
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-        }
-    }
-    
-    if (x>=1 && x<=3  &&
-        [self.arr[y][x-1] isEqual:@1 ] &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y][x+1] isEqual:@1 ]){
-        MyButton *first = self.buttons[y*5+x-1];
-        MyButton *second = self.buttons[y*5+x];
-        MyButton *third = self.buttons[y*5+x+1];
-        
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-            
-        }
-        
-    }
-    
-    if (x<=2 && y <=2 &&
-        [self.arr[y][x] isEqual:@1 ] &&
-        [self.arr[y][x+1] isEqual:@1 ] &&
-        [self.arr[y][x+2] isEqual:@1 ]){
-        MyButton *first = self.buttons[y*5+x];
-        MyButton *second = self.buttons[y*5+x+1];
-        MyButton *third = self.buttons[y*5+x+2];
-        if ([first.colour isEqualToString: second.colour ] && [second.colour isEqualToString: third.colour]) {
-            [first setBackgroundColor:[UIColor redColor]];
-            [second setBackgroundColor:[UIColor redColor]];
-            [third setBackgroundColor:[UIColor redColor]];
-            return YES;
-        }
-        
-        
-    }
-    
+    // а что, если мы поменяем правила игры и теперь нужно будет 4 в ряд?)
+    // слава богу такого не намечается..
     
    
+    int startX = MAX(1, x-1);
+    int startY = MAX(1, y-1);
+    int endX = MIN(x+1, (int)self.arr.count-2);
+    int endY = MIN(y+1, (int)self.arr.count-2);
+    NSArray *buttArr;
+    for (int xx = startX; xx <= endX; xx++) {
+        for (int yy = startY; yy <= endY; yy++) {
+            // нам нужно проверить 4 условия: по Х, У и по 2 диагоналям
+            MyButton *first = self.buttons[(yy-1) * 5 + xx - 1];
+            MyButton *second = self.buttons[(yy) * 5 + xx];
+            MyButton *third = self.buttons[(yy+1) * 5 + xx + 1];
+            
+            if ([self isSameButtons:@[first, second, third]]) {
+                buttArr = @[first, second, third];
+                break;
+            }
+            
+            first = self.buttons[(yy+1) * 5 + xx - 1];
+            second = self.buttons[(yy) * 5 + xx];
+            third = self.buttons[(yy-1) * 5 + xx + 1];
+            
+            if ([self isSameButtons:@[first, second, third]]) {
+                buttArr = @[first, second, third];
+                break;
+            }
+            
+            first = self.buttons[(yy) * 5 + xx - 1];
+            second = self.buttons[(yy) * 5 + xx];
+            third = self.buttons[(yy) * 5 + xx + 1];
+            
+            if ([self isSameButtons:@[first, second, third]]) {
+                buttArr = @[first, second, third];
+                break;
+            }
+            
+            first = self.buttons[(yy+1) * 5 + xx];
+            second = self.buttons[(yy) * 5 + xx];
+            third = self.buttons[(yy-1) * 5 + xx];
+            
+            if ([self isSameButtons:@[first, second, third]]) {
+                buttArr = @[first, second, third];
+                break;
+            }
+        }
+        if (buttArr)
+            break;
+    }
     
-    return NO;
-    
-    
+    for (UIButton *butt in buttArr) {
+        butt.backgroundColor = [UIColor redColor];
+    }
+    return buttArr != nil;
     
 }
 
 
 -(void)buttonDidClick:(MyButton *)button{
-    if(!button.wasClick){
-        
-    if(self.i==0){
+    if (button.wasClick)
+        return; // магия сокращения вложенности
+    
+    if (self.i==0) {
         [button setBackgroundImage:[UIImage imageNamed:@"x.png"] forState:UIControlStateNormal];
         self.i = 1;
         [button setColour:@"X"];
         
-    }
-    else{
-    
+    } else {
         [button setBackgroundImage:[UIImage imageNamed:@"o.png"] forState:UIControlStateNormal];
         self.i = 0;
         [button setColour:@"0"];
-       
-        
-    
-    }
-        [self changeTurn];
-        button.wasClick= YES;
-        if ([self gameWasOverWithButtonNumber:button.number]){
-            NSLog(@"Game over");
-        }
     }
     
-    
+    [self changeTurn];
+    button.wasClick= YES;
+    if ([self gameWasOverWithButtonNumber:button.number]) {
+        NSLog(@"Game over");
+    }
 }
 
 -(void)changeTurn{

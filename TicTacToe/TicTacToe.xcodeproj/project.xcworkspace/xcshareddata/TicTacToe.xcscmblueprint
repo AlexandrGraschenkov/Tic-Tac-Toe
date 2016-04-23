@@ -1,14 +1,16 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F444530EA05E325E3E0562A78342DBBE68A6AD27",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "84399FDA91C98AC78E7260443FC1CD574CB03FDF",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "84399FDA91C98AC78E7260443FC1CD574CB03FDF" : 0,
     "F444530EA05E325E3E0562A78342DBBE68A6AD27" : 0,
     "66F677A90FC50DCAFA27B0DC1A4C81A758C7D950" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E84C866B-FE6A-43F0-84DB-42DDEA0F5B84",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "84399FDA91C98AC78E7260443FC1CD574CB03FDF" : "Tic-Tac-Toe\/",
     "F444530EA05E325E3E0562A78342DBBE68A6AD27" : "Projects\/",
     "66F677A90FC50DCAFA27B0DC1A4C81A758C7D950" : ""
   },
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/Timofeeva_11-405\/timofeevam_11-405.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "66F677A90FC50DCAFA27B0DC1A4C81A758C7D950"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AlexandrGraschenkov\/Tic-Tac-Toe",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "84399FDA91C98AC78E7260443FC1CD574CB03FDF"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/Timofeeva_11-405\/projects.git",
